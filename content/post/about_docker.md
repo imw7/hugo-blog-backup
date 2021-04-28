@@ -4,12 +4,12 @@ tags: [Docker, 常用组件和技巧]
 categories: [Docker]
 abbrlink: docker
 date: 2020-03-04 00:00:00
-toc: true
+toc: false
 ---
 
 本文介绍Docker在Ubuntu下的安装以及Docker的基本命令。<!--more-->
 
-### 安装步骤：
+### 安装步骤
 
 1.更新Ubuntu的apt源索引
 

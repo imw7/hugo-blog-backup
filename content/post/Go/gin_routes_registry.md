@@ -172,19 +172,19 @@ gin_demo
 ```go
 func LoadShop(e *gin.Engine)  {
 	e.GET("/hello", helloHandler)
-  e.GET("/goods", goodsHandler)
-  e.GET("/checkout", checkoutHandler)
-  ...
+    e.GET("/goods", goodsHandler)
+    e.GET("/checkout", checkoutHandler)
+    ...
 }
 ```
 
-`routers/blog.go`中添加一个`LoadBlog的函数，将blog相关的路由注册到指定的路由器：
+`routers/blog.go`中添加一个`LoadBlog`的函数，将blog相关的路由注册到指定的路由器：
 
 ```go
 func LoadBlog(e *gin.Engine) {
 	e.GET("/post", postHandler)
-  e.GET("/comment", commentHandler)
-  ...
+    e.GET("/comment", commentHandler)
+    ...
 }
 ```
 
