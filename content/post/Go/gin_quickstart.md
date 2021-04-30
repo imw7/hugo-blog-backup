@@ -119,7 +119,7 @@ func main() {
 
 我们首先定义一个存放模板文件的`templates`文件夹，然后在其内部按照业务分别定义一个`posts`文件夹和一个`users`文件夹。 `posts/index.html`文件的内容如下：
 
-```template
+```html
 {{define "posts/index.html"}}
 <!DOCTYPE html>
 <html lang="en">
@@ -139,7 +139,7 @@ func main() {
 
 `users/index.html`文件的内容如下：
 
-```template
+```html
 {{define "users/index.html"}}
 <!DOCTYPE html>
 <html lang="en">
@@ -203,7 +203,7 @@ func main() {
 
 在`index.tmpl`中使用定义好的`safe`模板函数：
 
-```template
+```html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
