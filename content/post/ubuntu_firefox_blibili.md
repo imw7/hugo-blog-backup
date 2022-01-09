@@ -1,7 +1,7 @@
 +++
 title='Ubuntu下Firefox使用HTML5播放器看B站'
 tags=[]
-categories=[]
+categories=["其他"]
 date="2021-04-29T21:55:28+08:00"
 toc=false
 draft=false

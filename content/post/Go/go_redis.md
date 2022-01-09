@@ -25,20 +25,131 @@ Redis支持诸如字符串（strings）、哈希（hashes）、列表（lists）
 
 ## 准备Redis环境
 
-这里直接使用Docker启动一个redis环境，方便学习使用。
+### Linux源码安装
 
-docker启动一个名为redis605的6.0.5版本的redis server示例：
+从下载地址：https://redis.io/download，下载最新稳定版本 `redis`。
+
+以 `6.2.6` 版本为例，下载并安装：
 
 ```bash
-docker run --name redis507 -p 6379:6379 -d redis:6.0.5
+$ wget http://download.redis.io/releases/redis-6.2.6.tar.gz
+$ tar xzf redis-6.2.6.tar.gz
+$ cd redis-6.2.6
+$ make
 ```
 
-**注意：**此处的版本、容器名和端口号请根据自己需要设置。
-
-启动一个redis-cli连接上面的redis server:
+完成上述步骤后，在 `src` 目录中会出现编译好的`redis-server` 和 `redis-cli` 等可执行文件。启动`redis` 服务的命令：
 
 ```bash
-docker run -it --network host --rm redis:6.0.5 redis-cli
+$ src/redis-server
+```
+
+用编译好的redis客户端 `redis-cli`和 redis 服务端 `redis-server` 进行交互：
+
+```bash
+$ src/redis-cli
+redis> set foo bar
+OK
+redis> get foo
+"bar"
+```
+
+### Ubuntu安装
+
+可以通过`PPA`安装，将 `redislabs/redis`包仓库添加到`apt` 索引中，更新并且安装。
+
+```bash
+$ sudo add-apt-repository ppa:redislabs/redis
+$ sudo apt-get update
+$ sudo apt-get install redis
+```
+
+### Docker安装
+
+`docker`启动一个名为`redis626`的`6.2.6版本`的`redis server`示例：
+
+```bash
+docker run --name redis626 -p 6379:6379 -d redis:6.2.6
+```
+
+**注意**：此处的版本、容器名和端口号请根据自己需要设置。
+
+启动一个`redis-cli`连接上面的`redis server`:
+
+```bash
+docker run -it --network host --rm redis:6.2.6 redis-cli
+```
+
+## Redis基本使用
+
+### 修改配置文件
+
+```bash
+$ vim /etc/redis/redis.conf
+```
+
+ 将 `bind 127.0.0.1 -::1` 修改为当前主机 `IP` 地址，如：192.168.6.108。
+
+### 端口
+
+redis默认端口为6379，当然可以通过配置文件修改默认端口。
+
+### 开启redis
+
+```bash
+$ redis-server
+```
+
+验证redis的ip和port：
+
+```bash
+$ ps xau | grep redis
+```
+
+### 连接redis
+
+通过redis-cli来实现数据库的连接：
+
+```bash
+$ redis-cli -h 127.0.0.1 -p 6379
+```
+
+或者直接：
+
+```bash
+$ redis-cli
+```
+
+也是可以的。
+
+### 添加数据
+
+添加一条数据可以使用 `set key value` 命令来实现，如：
+
+```bash
+redis> set foo bar
+OK
+```
+
+### 获取数据
+
+想要获取数据可以通过 `get key` 命令来实现，如：
+
+```bash
+redis> get foo
+"bar"
+```
+
+### 查看所有
+
+```bash
+redis> keys *
+```
+
+### 删除所有
+
+```bash
+redis> flushall
 ```
 
 # go-redis库

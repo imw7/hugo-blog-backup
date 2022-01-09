@@ -122,7 +122,7 @@ import 别名 "包的路径"
 
 ```go
 import "fmt"
-import m "github.com/imw7/studygo/pkg_test"
+import m "imw7.com/studygo/pkg_test"
 
 func main() {
 	fmt.Println(m.Add(100, 200))
@@ -135,7 +135,7 @@ func main() {
 ```go
 import (
     "fmt"
-    m "github.com/imw7/studygo/pkg_test"
+    m "imw7.com/studygo/pkg_test"
  )
 
 func main() {
@@ -176,12 +176,13 @@ Go语言包会从`main`包开始检查其导入的所有包，每个包中又可
 
 编写一个`calc`包实现加减乘除四个功能函数，在`snow`这个包中导入并使用加减乘除四个函数实现数学运算。
 
-`calc`包
+①**`calc`包**
 
 ```go
+// calc.go
 package calc
 
-// 加法运算
+// Add 加法运算
 func Add(a ...float64) float64 {
 	ret := a[0]
 	for i := 1; i < len(a); i++ {
@@ -190,7 +191,7 @@ func Add(a ...float64) float64 {
 	return ret
 }
 
-// 减法运算
+// Sub 减法运算
 func Sub(s ...float64) float64 {
 	ret := s[0]
 	for i := 1; i < len(s); i++ {
@@ -199,7 +200,7 @@ func Sub(s ...float64) float64 {
 	return ret
 }
 
-// 乘法运算
+// Mul 乘法运算
 func Mul(m ...float64) float64 {
 	ret := m[0]
 	for i := 1; i < len(m); i++ {
@@ -208,7 +209,7 @@ func Mul(m ...float64) float64 {
 	return ret
 }
 
-// 除法运算
+// Div 除法运算
 func Div(d ...float64) float64 {
 	ret := d[0]
 	for i := 1; i < len(d); i++ {
@@ -218,14 +219,22 @@ func Div(d ...float64) float64 {
 }
 ```
 
-`snow`包
+```go
+// go.mod
+module imw7.com/studygo/import_demo/calc
+
+go 1.16
+```
+
+②**`snow`包**
 
 ```go
+// main.go
 package main
 
 import (
 	"fmt"
-	calc "github.com/imw7/calc"
+	calc "imw7.com/studygo/import_demo/calc"
 )
 
 func main() {
@@ -243,11 +252,22 @@ func main() {
 }
 ```
 
-输出结果：
+```go
+// go.mod
+module import_demo
 
-```Fbash
+go 1.16
+
+require "imw7.com/studygo/import_demo/calc" v0.0.0
+replace "imw7.com/studygo/import_demo/calc" => "../calc"
+```
+
+**输出结果**
+
+```bash
 15
 -8
 210
 2.5
 ```
+

@@ -1,4 +1,4 @@
-baseURL = "https://imw7.github.io"
+baseURL = "https://www.imw7.com/"
 languageCode = "zh-CN"
 title = "魏奇的博客"
 theme = "maupassant"
@@ -25,6 +25,7 @@ summaryLength = 140
   busuanzi = true #启用不算子网页统计
   googleAd = ""  #ca-pub-xxxxxxxxxxxxxx
   localSearch = true # 启用本地搜索
+  beian = "川ICP备xxxxxxx号-1"
 
   # 这里我存放在了主题的static文件夹里，根目录的似乎也可以
   customCSS = ['douban.css', 'other.css']
@@ -43,7 +44,7 @@ summaryLength = 140
 [[params.links]]
   title = "魏奇的博客"
   name = "魏奇的博客"
-  url = "https://imw7.github.io/"
+  url = "https://www.imw7.com/"
 
 ## 侧边栏广告位
 # [[params.ads]]
@@ -78,8 +79,32 @@ summaryLength = 140
 ## 配置代码高亮
 [markup]
   [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ''
+    lineAnchors = ''
+    lineNoStart = 1
     lineNos = true
-    style = "monokai"
+    lineNumbersInTable = true
+    noClasses = true
+#    style = "algol_nu"
+#    style = "trac"
+    style = "github"
+    tabWidth = 4
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.renderer]
+      hardWraps = false
+      unsafe = false
+      xhtml = false
 
 ## 配置网站菜单
 

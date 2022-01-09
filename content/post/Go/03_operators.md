@@ -77,22 +77,50 @@ Go 语言内置的运算符有：
 
 # 练习题
 
-有一堆数字，如果除了一个数字以外，其他数字都出现了两次，那么如何找到出现一次的数字？
+1、一个数组中有一个数字出现了奇数次，其余数都出现了偶数次，求这个数？
 
 ```go
-func pickNumber() {
-    numbers := "7328917825931"
-	res := 0
-	for _, v := range string(numbers) {
-		// ^: 两位不一样则为1
-		res ^= int(v) // 0异或任何数都是原来的数: x ^ 0 = x
+func printOddTimesNums(nums []int) (eor int) {
+	eor = 0
+	for _, num := range nums {
+		eor ^= num
 	}
-	fmt.Println(string(res))
+	return eor
+}
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1}
+	eor := printOddTimesNums(nums)
+	fmt.Println(eor) // 6
 }
 ```
 
-输出结果：
+2、一个数组中有两个数字出现了奇数次，其余数都出现了偶数次，求这两个数？
 
-```bash
-5
+```go
+func printOddTimesNum(arr []int) (int, int) {
+	eor := 0
+	for _, num := range arr {
+		eor ^= num
+	}
+	// eor = a ^ b
+	// eor != 0
+	// eor必然有一个位置上是1
+	rightOne := eor & (^eor + 1) // 提取最右的1
+
+	onlyOne := 0
+	for _, cur := range arr {
+		if (cur & rightOne) == 0 {
+			onlyOne ^= cur
+		}
+	}
+	return onlyOne, eor ^ onlyOne
+}
+
+func main() {
+    nums := []int{1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 0}
+	a, b := printOddTimesNum(nums)
+	fmt.Println(a, b) // 0 6
+}
 ```
+
