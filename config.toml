@@ -1,5 +1,5 @@
-baseURL = "https://www.imw7.com/"
-languageCode = "zh-CN"
+baseURL = "https://imw7.github.io/"
+languageCode ="zh-CN"
 title = "魏奇的博客"
 theme = "maupassant"
 googleAnalytics = ""  # UA-XXXXXXXX-X
@@ -25,7 +25,7 @@ summaryLength = 140
   busuanzi = true #启用不算子网页统计
   googleAd = ""  #ca-pub-xxxxxxxxxxxxxx
   localSearch = true # 启用本地搜索
-  beian = "川ICP备xxxxxxx号-1"
+  beian = "蜀ICP备2022000811号-1"
 
   # 这里我存放在了主题的static文件夹里，根目录的似乎也可以
   customCSS = ['douban.css', 'other.css']
